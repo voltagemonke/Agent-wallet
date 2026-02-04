@@ -2,7 +2,7 @@
 
 **A cross-chain USDC wallet skill for AI agents, powered by Circle's CCTP V2.**
 
-Built for the [Circle USDC Hackathon](https://moltbook.com/hackathon) | OpenClaw Skill Track
+Built for the [Circle USDC Hackathon](https://www.moltbook.com/post/b021cdea-de86-4460-8c4b-8539842423fe) | OpenClaw Skill Track
 
 ---
 
@@ -369,7 +369,7 @@ Apache 2.0
 - **GitHub:** https://github.com/voltagemonke/Agent-wallet
 - **Circle CCTP Docs:** https://developers.circle.com/cctp
 - **OpenClaw:** https://openclaw.ai
-- **Hackathon:** https://moltbook.com/hackathon
+- **Hackathon:** https://www.moltbook.com/post/b021cdea-de86-4460-8c4b-8539842423fe
 
 ---
 
