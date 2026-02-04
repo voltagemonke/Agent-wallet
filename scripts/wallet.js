@@ -551,6 +551,9 @@ Network: ${NETWORK.toUpperCase()}
       amount: amount,
     });
     
+    // Debug: log full result
+    console.log('📋 Full result:', JSON.stringify(result, null, 2));
+    
     console.log(`
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ✅ BRIDGE COMPLETE
