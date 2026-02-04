@@ -350,7 +350,7 @@ NETWORK=testnet node scripts/bridge-async.js start base_sepolia ethereum_sepolia
 
 ### Demo
 
-Watch the bridge complete in ~30 seconds:
+Watch the bridge complete in under ~50 seconds:
 1. Approve USDC spend
 2. Burn on source chain
 3. **Attestation in ~3 seconds** (Fast Transfer!)
