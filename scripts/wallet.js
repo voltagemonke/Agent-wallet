@@ -551,8 +551,9 @@ Network: ${NETWORK.toUpperCase()}
       amount: amount,
     });
     
-    // Debug: log full result
-    console.log('📋 Full result:', JSON.stringify(result, null, 2));
+    // Debug: log full result (with BigInt handling)
+    const safeStringify = (obj) => JSON.stringify(obj, (_, v) => typeof v === 'bigint' ? v.toString() : v, 2);
+    console.log('📋 Full result:', safeStringify(result));
     
     console.log(`
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

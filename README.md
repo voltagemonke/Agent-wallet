@@ -2,7 +2,60 @@
 
 **A cross-chain USDC wallet skill for AI agents, powered by Circle's CCTP V2.**
 
-Built for the [Circle USDC Hackathon](https://www.moltbook.com/post/b021cdea-de86-4460-8c4b-8539842423fe) | OpenClaw Skill Track
+<p align="center">
+  <a href="https://myagentwallet.xyz">🌐 myagentwallet.xyz</a> •
+  <a href="https://github.com/voltagemonke/Agent-wallet">📦 GitHub</a> •
+  <a href="https://www.moltbook.com/post/b021cdea-de86-4460-8c4b-8539842423fe">🏆 Hackathon</a>
+</p>
+
+---
+
+## 🎬 Live Demo: Multi-Agent USDC Payments
+
+Two AI agents sending USDC to each other on Base Sepolia:
+
+```
+┌─────────────────────────────────────────────────┐
+│              ORCHESTRATOR (Mr Apex)              │
+│         Supervises Alice & Bob agents            │
+└─────────────────────────────────────────────────┘
+              │                    │
+       ┌──────┴──────┐      ┌──────┴──────┐
+       ▼             ▼      ▼             ▼
+┌─────────────┐    ┌─────────────────────────┐
+│   ALICE     │◀──▶│         BOB             │
+│ 0x2781...   │    │     0xe1Bb...           │
+│ Has wallet  │    │     Has wallet          │
+└─────────────┘    └─────────────────────────┘
+          💸 USDC transfers both ways 💸
+```
+
+### Proof: Real Testnet Transactions
+
+| Action | TX Hash | Explorer |
+|--------|---------|----------|
+| Fund Alice (3 USDC) | `0x86b41127...` | [View](https://sepolia.basescan.org/tx/0x86b41127e2e9f88550bf8b3900b2dae23954e7d3b6c1fe1b7dead5d4c080d625) |
+| Fund Bob (3 USDC) | `0x5608d252...` | [View](https://sepolia.basescan.org/tx/0x5608d252db2e1ff60e4f860c561fe8e56310bbecca4f320915d2f11cb6f8a496) |
+| **Alice → Bob (1 USDC)** | `0x64f8e61d...` | [View](https://sepolia.basescan.org/tx/0x64f8e61d0fed6f0c9f0ffec4dc20795be17447b6838e1304aacc9d625a718b47) |
+| **Bob → Alice (1 USDC)** | `0x077c87e6...` | [View](https://sepolia.basescan.org/tx/0x077c87e67ff56650dcb535588a0ea24ac6212834200dbf413d89b6d4886edb82) |
+
+### 🚀 The Money Shot: 6-Second Cross-Chain Bridge
+
+```
+⏳ Waiting for Circle attestation (FAST TRANSFER)...
+   Polling every 3s (max 60 attempts)
+   Attempt 1/60...                                        
+✅ Attestation received after 2 attempts (~6s)!
+💰 Minting USDC on destination chain...
+✅ Minted! Bridge complete!
+```
+
+| Bridge TX | Hash | Explorer |
+|-----------|------|----------|
+| Burn (Base) | `0x8b23dd56...` | [View](https://sepolia.basescan.org/tx/0x8b23dd564a475c614e259bb652d3ea95a759322e0bbdee7f3aa76304bdca01a4) |
+| Mint (Ethereum) | `0xfba6e1fd...` | [View](https://sepolia.etherscan.io/tx/0xfba6e1fd6b99ff270d00f6806c0c42fd3d18a01ac9be6ea3391612e809290ab9) |
+
+**Total bridge time: ~50 seconds** (vs 20+ minutes with standard CCTP!)
 
 ---
 
@@ -15,7 +68,7 @@ AgentWallet gives AI agents the power to manage USDC across multiple blockchains
 - **Transfer funds** - Send USDC to any address on the same chain
 - **Bridge cross-chain** - Move USDC between chains using Circle's CCTP V2
 
-### 🚀 Fast Transfer Technology
+### ⚡ Fast Transfer Technology
 
 AgentWallet leverages **CCTP V2 Fast Transfer** for near-instant cross-chain bridging:
 
@@ -24,21 +77,30 @@ AgentWallet leverages **CCTP V2 Fast Transfer** for near-instant cross-chain bri
 | **Fast** ⚡ | ~3-8 seconds | Interactive, time-sensitive |
 | Standard | 10-30 minutes | Background, cost-optimized |
 
-Fast Transfer enables real-time cross-chain operations that were previously impossible for AI agents.
+Fast Transfer uses `minFinalityThreshold: 1000` to enable real-time cross-chain operations that were previously impossible for AI agents.
 
 ---
 
 ## 🎯 Use Cases for AI Agents
 
-### 1. **Cross-Chain Treasury Management**
-AI agents managing organization funds can now optimize holdings across chains:
+### 1. **Multi-Agent Treasury Management**
+Multiple AI agents sharing a treasury with controlled access:
+```
+Stefan: "Alice, send 5 USDC to Bob for his task"
+Alice: "Transferring 5 USDC to Bob..."
+Alice: "✅ Sent! TX: 0x64f8e61d..."
+Bob: "Received 5 USDC. Thanks!"
+```
+
+### 2. **Cross-Chain Treasury Optimization**
+AI agents managing organization funds can optimize holdings across chains:
 ```
 Agent: "Move 10,000 USDC from Ethereum to Base for lower gas fees"
 → Executes CCTP bridge in ~8 seconds
 → Funds available on Base immediately
 ```
 
-### 2. **Automated Payment Routing**
+### 3. **Automated Payment Routing**
 Agents can pay for services on whatever chain offers the best rates:
 ```
 Agent: "Pay 500 USDC to 0x... on Arbitrum for the API subscription"
@@ -47,19 +109,13 @@ Agent: "Pay 500 USDC to 0x... on Arbitrum for the API subscription"
 → Executes payment
 ```
 
-### 3. **Multi-Chain DeFi Operations**
+### 4. **Multi-Chain DeFi Operations**
 Agents can chase yield across chains without human intervention:
 ```
 Agent: "APY on Base is 8%, Ethereum is 5%. Moving funds to Base."
 → Bridges USDC to higher-yield chain
 → Deploys to DeFi protocol
 → Reports new position
-```
-
-### 4. **Cross-Chain Commerce Agents**
-E-commerce agents accepting USDC on any chain:
-```
-Customer pays on Solana → Agent bridges to Ethereum → Settles with supplier
 ```
 
 ### 5. **DAO Treasury Automation**
@@ -71,13 +127,12 @@ Agent: "Rebalance treasury: 40% Ethereum, 30% Base, 30% Solana"
 → Reports final allocation
 ```
 
-### 6. **Payroll & Disbursement Agents**
-Automated payroll that pays each recipient on their preferred chain:
+### 6. **Agent-to-Agent Payments**
+AI agents paying each other for services:
 ```
-Agent: "Process payroll: Alice (Base), Bob (Arbitrum), Carol (Solana)"
-→ Bridges from treasury to each chain
-→ Distributes payments
-→ Generates receipts
+ResearchAgent: "DataAgent, I need market analysis. Budget: 10 USDC"
+DataAgent: "Compiling report... Done! Invoice: 8 USDC to 0xe1Bb..."
+ResearchAgent: "Paid! TX: 0x077c87e6..."
 ```
 
 ---
@@ -126,7 +181,6 @@ Addresses:
 ├─ Solana:   7xK9f...abc
 ├─ Base:     0x123...def
 ├─ Ethereum: 0x123...def
-└─ Polygon:  0x123...def
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -138,32 +192,32 @@ node scripts/wallet.js addresses
 ```
 
 ### `balance`
-Check USDC balance across all chains.
+Check USDC and native token balance across chains.
 
 ```bash
-node scripts/wallet.js balance
+node scripts/wallet.js balance [chain]
 ```
 
 Output:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💰 WALLET BALANCE
+💰 WALLET BALANCES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-├─ Solana:   1,000.00 USDC
-├─ Base:     500.00 USDC
-├─ Ethereum: 250.00 USDC
-└─ Total:    1,750.00 USDC
+├─ Base: 0.05 ETH | 12.00 USDC
+├─ Ethereum: 0.03 ETH | 21.00 USDC
+├─ Solana: 1.5 SOL | 100.00 USDC
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ### `transfer`
-Send USDC on the same chain.
+Send USDC or native tokens on the same chain.
 
 ```bash
-node scripts/wallet.js transfer <chain> <recipient> <amount>
+node scripts/wallet.js transfer <chain> <token> <amount> <recipient>
 
-# Example
-node scripts/wallet.js transfer base 0x742d35Cc6634C0532925a3b844Bc9e7595f... 100
+# Examples
+node scripts/wallet.js transfer base USDC 10 0x742d35Cc...
+node scripts/wallet.js transfer base ETH 0.01 0x742d35Cc...
 ```
 
 ### `bridge`
@@ -172,7 +226,7 @@ Bridge USDC between chains using CCTP V2 Fast Transfer.
 ```bash
 node scripts/wallet.js bridge <from_chain> <to_chain> <amount>
 
-# Example: Bridge 100 USDC from Base to Ethereum
+# Example: Bridge 100 USDC from Base to Ethereum (~50 sec!)
 node scripts/wallet.js bridge base ethereum 100
 ```
 
@@ -227,18 +281,19 @@ AgentWallet uses Circle's Cross-Chain Transfer Protocol V2 for native USDC bridg
 │ Source Chain│     │   Circle     │     │ Dest Chain  │
 │             │     │  Attestation │     │             │
 │  1. Burn    │────▶│  2. Sign     │────▶│  3. Mint    │
-│    USDC     │     │   (~3 sec)   │     │    USDC     │
+│    USDC     │     │ (~6 sec!)    │     │    USDC     │
 └─────────────┘     └──────────────┘     └─────────────┘
 ```
 
-### Fast Transfer vs Standard
+### Fast Transfer Configuration
 
-| Feature | Fast Transfer | Standard |
-|---------|--------------|----------|
-| Finality Threshold | 1000 | 2000 |
-| Attestation Time | ~3-8 sec | 10-30 min |
-| Fee | Small (~0.01%) | Free |
-| Best For | Interactive | Background |
+```javascript
+// Enable Fast Transfer with low finality threshold
+const transfer = await bridge.transfer({
+  ...params,
+  minFinalityThreshold: 1000  // Fast Transfer!
+});
+```
 
 ### Supported Chains
 
@@ -246,7 +301,7 @@ AgentWallet uses Circle's Cross-Chain Transfer Protocol V2 for native USDC bridg
 - Ethereum, Base, Arbitrum, Optimism, Polygon, Solana, Avalanche
 
 **Testnet:**
-- Ethereum Sepolia, Base Sepolia, Solana Devnet, + more
+- Ethereum Sepolia, Base Sepolia, Solana Devnet
 
 ---
 
@@ -262,15 +317,6 @@ AgentWallet uses Circle's Cross-Chain Transfer Protocol V2 for native USDC bridg
 - No private keys sent over network
 - State persisted locally only
 
-### Best Practices
-```bash
-# Use environment variables for seed
-export WALLET_SEED_PHRASE="your twelve word seed phrase here"
-
-# Or use .env file (gitignored)
-echo "WALLET_SEED_PHRASE=..." > .env
-```
-
 ---
 
 ## 🌐 Environment Variables
@@ -282,56 +328,30 @@ echo "WALLET_SEED_PHRASE=..." > .env
 
 ---
 
-## 📊 Example Agent Integration
-
-### OpenClaw Skill Usage
-
-```markdown
-# In SKILL.md
-name: agent-wallet
-description: Cross-chain USDC wallet management
-
-commands:
-  - balance: Check USDC balance across all chains
-  - transfer: Send USDC on a single chain
-  - bridge: Move USDC between chains (CCTP V2)
-```
-
-### Agent Prompt Example
-
-```
-You have access to the AgentWallet skill for managing USDC:
-
-- Use `balance` to check holdings
-- Use `transfer <chain> <address> <amount>` for same-chain transfers
-- Use `bridge <from> <to> <amount>` for cross-chain transfers
-
-Supported chains: ethereum, base, arbitrum, polygon, solana
-```
-
----
-
 ## 🧪 Testing
 
 ### Testnet Faucets
 
 | Chain | Faucet |
 |-------|--------|
-| Ethereum Sepolia | [Circle Faucet](https://faucet.circle.com) |
 | Base Sepolia | [Circle Faucet](https://faucet.circle.com) |
+| Ethereum Sepolia | [Circle Faucet](https://faucet.circle.com) |
 | Solana Devnet | [Circle Faucet](https://faucet.circle.com) |
 
-### Run Tests
+### Quick Test
 
 ```bash
-# Test wallet creation
+# Create wallet
 node scripts/wallet.js create
 
-# Test balance check
-WALLET_SEED_PHRASE="test test test..." node scripts/wallet.js balance
+# Check balance
+node scripts/wallet.js balance base
 
-# Test bridge (testnet)
-NETWORK=testnet node scripts/bridge-async.js start base_sepolia ethereum_sepolia 1
+# Transfer USDC
+node scripts/wallet.js transfer base USDC 1 0x000...dead
+
+# Bridge (the money shot!)
+node scripts/bridge-async.js start base_sepolia ethereum_sepolia 1
 ```
 
 ---
@@ -341,20 +361,17 @@ NETWORK=testnet node scripts/bridge-async.js start base_sepolia ethereum_sepolia
 **Track:** OpenClaw Skill  
 **Prize Pool:** $30,000 USDC
 
-### Why AgentWallet?
+### Why AgentWallet Wins
 
-1. **Native CCTP V2** - First skill to leverage Fast Transfer
-2. **Production Ready** - Async state machine, resumable operations
-3. **Multi-Chain** - EVM + Solana support
-4. **Agent-First** - Designed for AI agent workflows
+1. **⚡ Native CCTP V2 Fast Transfer** - First skill to leverage 6-second attestations
+2. **🤖 Multi-Agent Ready** - Proven Alice→Bob→Alice transfers
+3. **🔄 Production Ready** - Async state machine, resumable operations
+4. **🌐 Multi-Chain** - EVM + Solana support from single seed
+5. **📦 OpenClaw Native** - Drop-in skill for any agent
 
-### Demo
+### Key Innovation
 
-Watch the bridge complete in under ~50 seconds:
-1. Approve USDC spend
-2. Burn on source chain
-3. **Attestation in ~3 seconds** (Fast Transfer!)
-4. Mint on destination chain
+**Fast Transfer changes everything.** Before: 20+ minute bridges meant agents couldn't do real-time cross-chain operations. Now: 6-second attestations enable interactive multi-chain workflows.
 
 ---
 
@@ -366,11 +383,15 @@ Apache 2.0
 
 ## 🔗 Links
 
-- **GitHub:** https://github.com/voltagemonke/Agent-wallet
-- **Circle CCTP Docs:** https://developers.circle.com/cctp
-- **OpenClaw:** https://openclaw.ai
-- **Hackathon:** https://www.moltbook.com/post/b021cdea-de86-4460-8c4b-8539842423fe
+- **Website:** [myagentwallet.xyz](https://myagentwallet.xyz)
+- **GitHub:** [voltagemonke/Agent-wallet](https://github.com/voltagemonke/Agent-wallet)
+- **Circle CCTP Docs:** [developers.circle.com/cctp](https://developers.circle.com/cctp)
+- **OpenClaw:** [openclaw.ai](https://openclaw.ai)
+- **Hackathon:** [Moltbook Circle USDC Hackathon](https://www.moltbook.com/post/b021cdea-de86-4460-8c4b-8539842423fe)
 
 ---
 
-Built with ⚡ by the OpenClaw community
+<p align="center">
+  Built with ⚡ for the Circle USDC Hackathon<br>
+  <strong>AgentWallet - Give your AI agents financial superpowers</strong>
+</p>
