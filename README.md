@@ -15,19 +15,19 @@
 Two AI agents sending USDC to each other on Base Sepolia:
 
 ```
-┌─────────────────────────────────────────────────┐
-│              ORCHESTRATOR               │
-│         Supervises Alice & Bob agents            │
-└─────────────────────────────────────────────────┘
-              │                    │
-       ┌──────┴──────┐      ┌──────┴──────┐
-       ▼             ▼      ▼             ▼
-┌─────────────┐    ┌─────────────────────────┐
-│   ALICE     │◀──▶│         BOB             │
-│ 0x2781...   │    │     0xe1Bb...           │
-│ Has wallet  │    │     Has wallet          │
-└─────────────┘    └─────────────────────────┘
-          💸 USDC transfers both ways 💸
+┌───────────────────────────────────────┐
+│            ORCHESTRATOR               │
+│     Supervises Alice & Bob agents     │
+└───────────────────────────────────────┘
+              │               │
+       ┌──────┴──────┐ ┌──────┴──────┐
+       ▼             ▼ ▼             ▼
+┌─────────────┐     ┌─────────────┐
+│   ALICE     │◀───▶│    BOB      │
+│  0x2781...  │     │  0xe1Bb...  │
+│ Has wallet  │     │ Has wallet  │
+└─────────────┘     └─────────────┘
+       💸 USDC transfers both ways 💸
 ```
 
 ### Proof: Real Testnet Transactions
