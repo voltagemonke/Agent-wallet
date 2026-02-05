@@ -16,7 +16,7 @@ Two AI agents sending USDC to each other on Base Sepolia:
 
 ```
 ┌─────────────────────────────────────────────────┐
-│              ORCHESTRATOR (Mr Apex)              │
+│              ORCHESTRATOR               │
 │         Supervises Alice & Bob agents            │
 └─────────────────────────────────────────────────┘
               │                    │
