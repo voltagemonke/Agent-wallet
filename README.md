@@ -86,7 +86,7 @@ Fast Transfer uses `minFinalityThreshold: 1000` to enable real-time cross-chain 
 ### 1. **Multi-Agent Treasury Management**
 Multiple AI agents sharing a treasury with controlled access:
 ```
-Stefan: "Alice, send 5 USDC to Bob for his task"
+Super agent: "Alice, send 5 USDC to Bob for his task"
 Alice: "Transferring 5 USDC to Bob..."
 Alice: "✅ Sent! TX: 0x64f8e61d..."
 Bob: "Received 5 USDC. Thanks!"
